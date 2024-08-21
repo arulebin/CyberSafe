@@ -1,0 +1,134 @@
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+.container {
+  width: 80%;
+  margin: auto;
+  overflow: hidden;
+  max-width: 1200px;
+}
+.navbar {
+  background-color: #003366;
+  position: fixed;
+  width: 100%;
+}
+.navbar-brand {
+  color: white !important;
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+.navbar-nav .nav-link {
+  color: #FFFFF0;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+.navbar-nav .nav-link:hover {
+  color: #00aced;
+  transform: scale(1.05);
+}
+
+h1 {
+  color: #003366 !important;
+  font-size: 2em;
+  padding-top: 20px;
+}
+
+/* Tips Section */
+.tips {
+  padding: 20px 0;
+}
+
+.tip {
+  background: #fff;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h3 {
+  margin-bottom: 10px;
+  font-size: 1.5em;
+}
+
+/* Extension Promo Section */
+.extension-promo {
+  text-align: center;
+  padding: 20px;
+  margin-top: 20px;
+  background: #e0e0e0;
+  border-radius: 5px;
+}
+
+.extension-promo h2 {
+  font-size: 2em;
+  margin-bottom: 15px;
+}
+
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #0066cc;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-top: 10px;
+  font-size: 1em;
+}
+
+.button:hover {
+  background: #004c99;
+}
+
+footer {
+  background: #003366;
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+  margin-top: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    width: 95%;
+  }
+
+  h1 {
+    font-size: 1.8em;
+  }
+
+  h3 {
+    font-size: 1.3em;
+  }
+
+  .extension-promo h2 {
+    font-size: 1.8em;
+  }
+
+  .button {
+    font-size: 0.9em;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  h1 {
+    font-size: 1.5em;
+  }
+
+  h3 {
+    font-size: 1.2em;
+  }
+
+  .extension-promo h2 {
+    font-size: 1.5em;
+  }
+
+  .button {
+    padding: 8px 15px;
+    font-size: 0.8em;
+  }
+}
