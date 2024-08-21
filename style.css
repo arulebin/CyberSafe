@@ -26,6 +26,12 @@ body {
   color: #00aced;
   transform: scale(1.05);
 }
+.navbar-toggler{
+  border:1px solid white !important;
+}
+.navbar-toggler-icon{
+  mix-blend-mode: color-burn;
+}
 
 /* Hero Section */
 .hero {
