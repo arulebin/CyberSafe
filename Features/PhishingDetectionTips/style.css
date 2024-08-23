@@ -3,7 +3,7 @@ body {
   line-height: 1.6;
   margin: 0;
   padding: 0;
-  background-color: #f4f4f4;
+  background-color: #f4f4f4 !important;
 }
 
 .container {
@@ -50,11 +50,11 @@ h1 {
 }
 
 .tip {
-  background: #fff;
+  background: white;
   padding: 15px;
   margin-bottom: 10px;
   border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 h3 {
