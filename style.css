@@ -9,15 +9,21 @@ body {
 
 /* Navbar */
 .navbar {
-  background-color: #003366;
   position: fixed;
   width:100%;
 }
 .navbar-brand {
   color: white !important;
-  font-size: 1.8rem;
+  font-size: 2rem;
   font-weight: bold;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
 }
+
+.navbar-brand:hover {
+  background-color: rgba(39, 35, 65, 0.4);
+}
+
 .navbar-nav .nav-link {
   color: white;
   transition: color 0.3s ease, transform 0.3s ease;

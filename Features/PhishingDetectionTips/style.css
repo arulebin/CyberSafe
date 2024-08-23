@@ -6,12 +6,6 @@ body {
   background-color: #f4f4f4 !important;
 }
 
-.container {
-  width: 80%;
-  margin: auto;
-  overflow: hidden;
-  max-width: 1200px;
-}
 .navbar {
   background-color: #003366;
   position: fixed;
