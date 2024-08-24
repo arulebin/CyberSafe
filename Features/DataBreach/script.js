@@ -11,6 +11,8 @@ passwordRad.addEventListener("click", toggleCheckType);
 
 
 function toggleCheckType() {
+    resultText.textContent='';
+    resultWrapper.className = 'result-wrapper'
     if (document.querySelector('input[name="checkType"]:checked').value === 'password') {
         emailInput.style.display = 'none';
         passwordInput.style.display = 'block';
