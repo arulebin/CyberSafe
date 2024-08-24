@@ -36,8 +36,21 @@
     <div class="wrapper">
         <h1 class="custom-logo">Check for Data Breach</h1>
         <p class="description">Find out if your Email address or Username is part of a data breach</p>
+        <div class="container">
+            <form>
+                <label>
+                    <input id="emailRad" type="radio" name="checkType" value="email" checked>
+                    <span>Email</span>
+                </label>
+                <label>
+                    <input id="passwordRad" type="radio" name="checkType" value="password">
+                    <span>Password</span>
+                </label>
+            </form>
+        </div>
         <div class="input-wrapper">
-            <input type="text" name="emailUsername" id="Input" placeholder="Enter your Email or Username" />
+            <input type="text" class="Input" id="emailInput" placeholder="Enter your Email or Username" required/>
+            <input type="password" class="Input" id="passwordInput" placeholder="Enter your password" required />
             <button type="submit" value="submit" id="submitBtn">Check</button>
         </div>
         
