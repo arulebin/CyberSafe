@@ -1,18 +1,42 @@
+const resultWrapper = document.getElementById('resultWrapper');
+const resultText = document.getElementById('result');
+//Radio buttons and inputs
 const emailRad = document.getElementById('emailRad');
 const passwordRad = document.getElementById('passwordRad');
-emailRad.addEventListener("click",toggleCheckType);
-passwordRad.addEventListener("click",toggleCheckType);
+const emailInput = document.getElementById('emailInput');
+const passwordInput = document.getElementById('passwordInput');
+
+emailRad.addEventListener("click", toggleCheckType);
+passwordRad.addEventListener("click", toggleCheckType);
+
+
 function toggleCheckType() {
-    const emailInput = document.getElementById('emailInput');
-    const passwordInput = document.getElementById('passwordInput');
     if (document.querySelector('input[name="checkType"]:checked').value === 'password') {
         emailInput.style.display = 'none';
         passwordInput.style.display = 'block';
-      } else {
+        emailInput.removeAttribute('required');
+        passwordInput.setAttribute('required', '');
+    } else {
         emailInput.style.display = 'block';
         passwordInput.style.display = 'none';
+        passwordInput.removeAttribute('required');
+        emailInput.setAttribute('required', '');
     }
 }
+//On submit call respective functions
+const submitBtn = document.getElementById("submitBtn");
+submitBtn.addEventListener("click", (e) => {
+    e.preventDefault();  
+    const checkType = document.querySelector('input[name="checkType"]:checked').value;
+    let dataInput;
+    if (checkType === "email") {
+        dataInput = document.getElementById('emailInput').value;
+    } else {
+        dataInput = document.getElementById('passwordInput').value;
+        checkPasswordPwned(dataInput);
+        passwordInput.value="";
+    }
+});
 
 //Check password in data breach
 async function checkPasswordPwned(password) {
@@ -27,10 +51,13 @@ async function checkPasswordPwned(password) {
     for (const hash of hashes) {
         const [h, count] = hash.split(':');
         if (h === suffix) {
-            return `Password found ${count} times in data breaches!`;
+            resultText.textContent= `Password found ${count} times in data breaches! Change your password ASAP!!`;
+            resultWrapper.className = 'result-wrapper breach-found';
+            return;
         }
     }
-    return "Password not found in any known data breaches.";
+    resultText.textContent = "Password not found in any known data breaches.";
+    resultWrapper.className = 'result-wrapper no-breach';
 }
 
 //hashes the password using the SHA-1 algorithm
@@ -41,3 +68,4 @@ async function sha1(str) {
     const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
     return hashHex.toUpperCase();
 }
+

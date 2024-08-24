@@ -22,7 +22,7 @@ body {
   font-weight: bold;
 }
 .navbar-nav .nav-link {
-  color: #FFFFF0;
+  color: #fffff0;
   transition: color 0.3s ease, transform 0.3s ease;
 }
 .navbar-nav .nav-link:hover {
@@ -30,10 +30,10 @@ body {
   transform: scale(1.05);
 }
 
-.navbar-toggler{
-  border:1px solid white !important;
+.navbar-toggler {
+  border: 1px solid white !important;
 }
-.navbar-toggler-icon{
+.navbar-toggler-icon {
   mix-blend-mode: color-burn;
 }
 
@@ -48,6 +48,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 0px;
 }
 
 .custom-logo {
@@ -70,7 +71,7 @@ body {
   display: flex;
   justify-content: center;
   margin-bottom: 30px;
-  width:85%;
+  width: 85%;
 }
 
 .Input {
@@ -83,7 +84,7 @@ body {
   color: #333;
   background-color: #fff;
 }
-#passwordInput{
+#passwordInput {
   display: none;
 }
 
@@ -105,15 +106,14 @@ body {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  margin-top: 30px;
+  margin:10px auto;
   background-color: rgba(0, 0, 0, 0.1);
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
-  display: none;
+  max-width: 1000px;
+  width:100%;
+  text-align: center;
 }
 
 .breach-container {
@@ -162,6 +162,14 @@ body {
 .breach-details p:last-child {
   color: #bbb;
   font-style: italic;
+}
+
+.breach-found {
+  background: linear-gradient(135deg, #ff7f7f, #ff4c4c);
+}
+
+.no-breach {
+  background: linear-gradient(135deg, #7fff7f, #4cff4c);
 }
 
 @media (max-width: 768px) {
@@ -268,7 +276,7 @@ body {
   margin-bottom: 0.375em;
 }
 
-.container  label input {
+.container label input {
   position: absolute;
   left: -9999px;
 }
