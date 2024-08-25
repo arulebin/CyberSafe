@@ -13,7 +13,7 @@ module.exports = async (req, res) => {
         return res.status(500).json({ message: 'Server configuration error: API key missing' });
     }
 
-    const url = `https://haveibeenpwned.com/api/v3/breachedaccount/${email}`;
+    const url = `https://haveibeenpwned.com/api/v3/breachedaccount/${email}?truncateResponse=false`;
 
     try {
         console.log(`Making request to ${url} with API key ${apiKey}`);
