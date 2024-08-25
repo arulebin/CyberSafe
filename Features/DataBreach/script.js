@@ -54,7 +54,7 @@ async function checkEmailBreach(email) {
 
         if (response.ok) {
             const breaches = await response.json();
-            console.log('Breaches received from server:', breaches); // Debug log
+            console.log('Breaches received from server:', breaches);
 
             if (breaches.length > 0) {
                 resultText.innerHTML = "";
@@ -64,7 +64,7 @@ async function checkEmailBreach(email) {
                     breachContainer.classList.add('breach-container');
 
                     const breachLogo = document.createElement('img');
-                    breachLogo.src = breach.LogoPath || 'default-logo.png'; // Fallback if LogoPath is missing
+                    breachLogo.src = breach.LogoPath || 'default-logo.png';
                     breachLogo.alt = breach.Name + " logo";
                     breachContainer.appendChild(breachLogo);
 
@@ -72,11 +72,11 @@ async function checkEmailBreach(email) {
                     breachDetails.classList.add('breach-details');
 
                     const breachTitle = document.createElement('h3');
-                    breachTitle.textContent = breach.Title || 'No Title'; // Fallback if Title is missing
+                    breachTitle.textContent = breach.Title || 'No Title';
                     breachDetails.appendChild(breachTitle);
 
                     const breachDescription = document.createElement('p');
-                    breachDescription.innerHTML = breach.Description || 'No Description'; // Fallback if Description is missing
+                    breachDescription.innerHTML = breach.Description || 'No Description';
                     breachDetails.appendChild(breachDescription);
 
                     const dataClasses = document.createElement('p');
@@ -143,4 +143,3 @@ async function sha1(str) {
     const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
     return hashHex.toUpperCase();
 }
-

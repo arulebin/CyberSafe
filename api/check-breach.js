@@ -21,13 +21,13 @@ module.exports = async (req, res) => {
             method: 'GET',
             headers: {
                 'hibp-api-key': apiKey,
-                'user-agent': 'YourAppName' // Some APIs require a user-agent header
+                'user-agent': 'CyberSafe'
             }
         });
 
         if (response.ok) {
             const breaches = await response.json();
-            console.log('Breaches found:', breaches); // Log the breaches for debugging
+            console.log('Breaches found:', breaches);
             res.status(200).json(breaches);
         } else if (response.status === 404) {
             console.log('No breaches found for email:', email);
