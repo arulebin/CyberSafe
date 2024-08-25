@@ -5,8 +5,8 @@ const emailRad = document.getElementById('emailRad');
 const passwordRad = document.getElementById('passwordRad');
 const emailInput = document.getElementById('emailInput');
 const passwordInput = document.getElementById('passwordInput');
-const optIn=document.getElementById("opt-in-section");
-optIn.classList.add('hidden');
+const optInSection=document.getElementById("opt-in-section");
+optInSection.classList.add('hidden');
 
 emailRad.addEventListener("click", toggleCheckType);
 passwordRad.addEventListener("click", toggleCheckType);
@@ -98,7 +98,7 @@ async function checkEmailBreach(email) {
                 resultText.textContent = "Your email has not been found in any known data breaches.";
                 resultWrapper.className = 'result-wrapper no-breach';
             }
-            optIn.classList.remove('hidden');
+            optInSection.classList.remove('hidden');
         } else if (response.status === 404) {
             resultText.textContent = "Your email has not been found in any known data breaches.";
             resultWrapper.className = 'result-wrapper no-breach';
@@ -146,11 +146,11 @@ async function sha1(str) {
     return hashHex.toUpperCase();
 }
 
-function optIn() {
+function optInB() {
     displayMessage("You have opted in for future breach notifications. Thank you!");
 }
 
-function optOut() {
+function optOutB() {
     displayMessage("You have opted out of future breach notifications.");
 }
 
