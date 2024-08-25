@@ -49,11 +49,13 @@ async function checkEmailBreach(email) {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({email})
+            body: JSON.stringify({ email })
         });
 
         if (response.ok) {
             const breaches = await response.json();
+            console.log('Breaches received from server:', breaches); // Debug log
+
             if (breaches.length > 0) {
                 resultText.innerHTML = "";
 
@@ -62,7 +64,7 @@ async function checkEmailBreach(email) {
                     breachContainer.classList.add('breach-container');
 
                     const breachLogo = document.createElement('img');
-                    breachLogo.src = breach.LogoPath;
+                    breachLogo.src = breach.LogoPath || 'default-logo.png'; // Fallback if LogoPath is missing
                     breachLogo.alt = breach.Name + " logo";
                     breachContainer.appendChild(breachLogo);
 
@@ -70,15 +72,19 @@ async function checkEmailBreach(email) {
                     breachDetails.classList.add('breach-details');
 
                     const breachTitle = document.createElement('h3');
-                    breachTitle.textContent = breach.Title;
+                    breachTitle.textContent = breach.Title || 'No Title'; // Fallback if Title is missing
                     breachDetails.appendChild(breachTitle);
 
                     const breachDescription = document.createElement('p');
-                    breachDescription.innerHTML = breach.Description;
+                    breachDescription.innerHTML = breach.Description || 'No Description'; // Fallback if Description is missing
                     breachDetails.appendChild(breachDescription);
 
                     const dataClasses = document.createElement('p');
-                    dataClasses.textContent = `Data Compromised: ${breach.DataClasses.join(", ")}`;
+                    if (breach.DataClasses && Array.isArray(breach.DataClasses)) {
+                        dataClasses.textContent = `Data Compromised: ${breach.DataClasses.join(", ")}`;
+                    } else {
+                        dataClasses.textContent = "Data Compromised: None";
+                    }
                     breachDetails.appendChild(dataClasses);
 
                     breachContainer.appendChild(breachDetails);
@@ -95,6 +101,8 @@ async function checkEmailBreach(email) {
             resultText.textContent = "Your email has not been found in any known data breaches.";
             resultWrapper.className = 'result-wrapper no-breach';
         } else {
+            const errorText = await response.text();
+            console.error('API Response Error:', response.status, errorText);
             resultText.textContent = "An error occurred while checking for breaches.";
             resultWrapper.className = 'result-wrapper breach-error';
         }

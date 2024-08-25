@@ -20,13 +20,14 @@ module.exports = async (req, res) => {
         const response = await fetch(url, {
             method: 'GET',
             headers: {
-                'hibp-api-key': apiKey
+                'hibp-api-key': apiKey,
+                'user-agent': 'YourAppName' // Some APIs require a user-agent header
             }
         });
 
         if (response.ok) {
             const breaches = await response.json();
-            console.log('Breaches found:', breaches);
+            console.log('Breaches found:', breaches); // Log the breaches for debugging
             res.status(200).json(breaches);
         } else if (response.status === 404) {
             console.log('No breaches found for email:', email);
