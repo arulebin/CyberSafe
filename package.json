@@ -1,0 +1,11 @@
+{
+    "name": "databreach",
+    "version": "1.0.0",
+    "scripts": {
+      "start": "node api/check-breach.js"
+    },
+    "dependencies": {
+      "node-fetch": "^2.6.1"
+    }
+  }
+  

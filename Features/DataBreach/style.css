@@ -172,6 +172,9 @@ body {
   background: linear-gradient(135deg, #7fff7f, #4cff4c);
 }
 
+.breach-error{
+  background: linear-gradient(135deg, #fff700, #ffd700);
+}
 @media (max-width: 768px) {
   .wrapper {
     padding: 30px;

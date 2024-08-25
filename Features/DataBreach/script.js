@@ -33,12 +33,77 @@ submitBtn.addEventListener("click", (e) => {
     let dataInput;
     if (checkType === "email") {
         dataInput = document.getElementById('emailInput').value;
+        checkEmailBreach(dataInput);
     } else {
         dataInput = document.getElementById('passwordInput').value;
         checkPasswordPwned(dataInput);
         passwordInput.value="";
     }
 });
+
+//Email Breach
+async function checkEmailBreach(email) {
+    try {
+        const response = await fetch('/api/check-breach', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email })
+        });
+
+        if (response.ok) {
+            const breaches = await response.json();
+            if (breaches.length > 0) {
+                resultText.innerHTML = "";
+
+                breaches.forEach(breach => {
+                    const breachContainer = document.createElement('div');
+                    breachContainer.classList.add('breach-container');
+
+                    const breachLogo = document.createElement('img');
+                    breachLogo.src = breach.LogoPath;
+                    breachLogo.alt = breach.Name + " logo";
+                    breachContainer.appendChild(breachLogo);
+
+                    const breachDetails = document.createElement('div');
+                    breachDetails.classList.add('breach-details');
+
+                    const breachTitle = document.createElement('h3');
+                    breachTitle.textContent = breach.Title;
+                    breachDetails.appendChild(breachTitle);
+
+                    const breachDescription = document.createElement('p');
+                    breachDescription.innerHTML = breach.Description;
+                    breachDetails.appendChild(breachDescription);
+
+                    const dataClasses = document.createElement('p');
+                    dataClasses.textContent = `Data Compromised: ${breach.DataClasses.join(", ")}`;
+                    breachDetails.appendChild(dataClasses);
+
+                    breachContainer.appendChild(breachDetails);
+
+                    resultText.appendChild(breachContainer);
+                });
+
+                resultWrapper.className = 'result-wrapper breach-found';
+            } else {
+                resultText.textContent = "Your email has not been found in any known data breaches.";
+                resultWrapper.className = 'result-wrapper no-breach';
+            }
+        } else if (response.status === 404) {
+            resultText.textContent = "Your email has not been found in any known data breaches.";
+            resultWrapper.className = 'result-wrapper no-breach';
+        } else {
+            resultText.textContent = "An error occurred while checking for breaches.";
+            resultWrapper.className = 'result-wrapper breach-error';
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        resultText.textContent = "An error occurred while checking for breaches.";
+        resultWrapper.className = 'result-wrapper breach-error';
+    }
+}
 
 //Check password in data breach
 async function checkPasswordPwned(password) {
