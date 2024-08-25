@@ -145,6 +145,7 @@ body {
 .breach-details {
   text-align: left;
   color: #fff;
+  margin-bottom: 10px;
 }
 
 .breach-details h3 {
@@ -156,11 +157,9 @@ body {
 .breach-details p {
   font-size: 1rem;
   margin-bottom: 8px;
-  color: #ddd;
 }
 
 .breach-details p:last-child {
-  color: #bbb;
   font-style: italic;
 }
 
