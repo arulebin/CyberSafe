@@ -317,3 +317,35 @@ body {
   transition: 0.25s ease;
   box-shadow: inset 0 0 0 0.125em #00005c;
 }
+
+.opt-in-section {
+  margin-top: 30px;
+}
+.opt-in-button,
+.opt-out-button {
+  padding: 10px 20px;
+  margin: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+  cursor: pointer;
+  color: #fff;
+}
+
+.opt-in-button {
+  background-color: #4caf50;
+}
+
+.opt-out-button {
+  background-color: #f44336;
+}
+
+.response-message {
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.hidden {
+  display: none;
+}
