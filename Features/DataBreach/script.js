@@ -155,6 +155,7 @@ function optOutB() {
 }
 
 function displayMessage(message) {
+    optInSection.classList.add('hidden');
     const responseMessage = document.getElementById('response-message');
     responseMessage.querySelector('p').textContent = message;
     responseMessage.classList.remove('hidden');
