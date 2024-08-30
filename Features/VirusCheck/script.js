@@ -23,7 +23,7 @@ submitBtn.addEventListener("click", async (e) => {
 function displayResults(data) {
     const resultWrapper = document.getElementById("resultWrapper");
     resultWrapper.innerHTML = '';
-
+    console.log(data.data.attributes.results);
     if (data.attributes && data.attributes.results) {
         const results = data.attributes.results;
         for (const engine in results) {
@@ -70,6 +70,7 @@ async function checkVirusUrl(url) {
         if (response.ok) {
             const result = await response.json();
             console.log('Scan result:', result);
+            console.log(result.data.attributes.results)
             displayResults(result);
             return result;
         } else {
