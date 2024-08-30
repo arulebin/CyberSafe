@@ -27,15 +27,17 @@ async function scanUrl(urlToScan) {
     }
 
     const result = await response.json();
+    console.log('Scan result:', result);
     return result.data.id;
 }
 
 // Function to Base64 URL-safe encode the scan ID
 function encodeScanId(scanId) {
     const base64Id = Buffer.from(scanId).toString('base64');
-    return base64Id.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+    const encodedId = base64Id.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+    console.log('Encoded Scan ID:', encodedId);
+    return encodedId;
 }
-
 // Function to get the report 
 async function getUrlReport(scanId) {
     const encodedScanId = encodeScanId(scanId);  // Encode the scanId
@@ -54,6 +56,7 @@ async function getUrlReport(scanId) {
     }
 
     const result = await response.json();
+    console.error('Fetch Report Error Response:', errorText);
     return result;
 }
 
