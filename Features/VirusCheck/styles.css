@@ -111,6 +111,31 @@
     width:100%;
     text-align: center;
   }
+  .result-item {
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    text-align: left;
+    color: #eee;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.result-item:hover {
+    transform: scale(1.02);
+}
+
+.result-item h5 {
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+}
+
+.result-item p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #ccc;
+}
   
   @keyframes gradientShift {
     0% {
