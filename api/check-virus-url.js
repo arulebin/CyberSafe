@@ -37,21 +37,33 @@ async function getUrlReport(scanId) {
 
     console.log('Fetching report for URL:', url);
 
-    const response = await fetch(url, {
-        method: 'GET',
-        headers: {
-            'x-apikey': API_KEY,
-        },
-    });
+    let status = 'queued';
+    while (status === 'queued') {
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'x-apikey': API_KEY,
+            },
+        });
 
-    if (!response.ok) {
-        const errorText = await response.text();
-        throw new Error(`Error fetching report: ${response.status} - ${errorText}`);
+        if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(`Error fetching report: ${response.status} - ${errorText}`);
+        }
+
+        const result = await response.json();
+        status = result.data.attributes.status;
+
+        if (status === 'queued') {
+            console.log('Scan is queued. Checking again...');
+            await new Promise(resolve => setTimeout(resolve, 5000));
+        } else if (status === 'completed') {
+            console.log('Scan completed:', result);
+            return result;
+        } else {
+            console.log('Scan status:', status);
+        }
     }
-
-    const report = await response.json();
-    console.log('Detailed report:', report);
-    return report;
 }
 
 module.exports = async (req, res) => {
