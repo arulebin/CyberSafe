@@ -1,5 +1,4 @@
 const fetch = require('node-fetch');
-
 const API_KEY = process.env.VIRUSTOTAL_API_KEY;
 
 if (!API_KEY) {
@@ -31,9 +30,16 @@ async function scanUrl(urlToScan) {
     return result.data.id;
 }
 
+// Function to Base64 URL-safe encode the scan ID
+function encodeScanId(scanId) {
+    const base64Id = Buffer.from(scanId).toString('base64');
+    return base64Id.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+}
+
 // Function to get the report 
 async function getUrlReport(scanId) {
-    const url = `https://www.virustotal.com/api/v3/urls/${scanId}`;
+    const encodedScanId = encodeScanId(scanId);  // Encode the scanId
+    const url = `https://www.virustotal.com/api/v3/urls/${encodedScanId}`;
 
     const response = await fetch(url, {
         method: 'GET',
@@ -61,6 +67,7 @@ module.exports = async (req, res) => {
     if (!url) {
         return res.status(400).json({ message: 'No URL provided' });
     }
+
     try {
         const scanId = await scanUrl(url);
         const report = await getUrlReport(scanId);
