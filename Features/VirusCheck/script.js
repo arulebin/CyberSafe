@@ -12,7 +12,10 @@ submitBtn.addEventListener("click", async (e) => {
     
     submitBtn.disabled = true;
     try {
-        await checkVirusUrl(url);
+        const result = await checkVirusUrl(url);
+        if (result) {
+            console.log('Result received from server:', result);
+        }
     } catch (error) {
         console.error('An unexpected error occurred:', error);
     } finally {
@@ -32,19 +35,16 @@ async function checkVirusUrl(url) {
         });
 
         if (response.ok) {
-            const text = await response.text();
-            try {
-                const result = JSON.parse(text);
-                console.log('Result received from server:', result);
-            } catch (jsonError) {
-                console.error('Error parsing JSON:', jsonError.message);
-            }
+            const result = await response.json();
+            console.log('Scan result:', result);
+            return result;
         } else {
             const errorMessage = await response.text();
             console.error(`Error (${response.status}): ${errorMessage}`);
+            throw new Error(`Error (${response.status}): ${errorMessage}`);
         }
     } catch (error) {
         console.error('Network or server error:', error.message);
+        throw error;
     }
 }
-
