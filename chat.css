@@ -33,7 +33,7 @@
     position: fixed;
     bottom: 60px;
     right: 15px;
-    width: 300px;
+    width: 350px;
     background: #fff;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -172,8 +172,8 @@
     }
 
     .chat-header .bot-img {
-        width: 25px; /* Smaller image for small screens */
-        height: 25px; /* Smaller image for small screens */
+        width: 25px;
+        height: 25px;
     }
 
     .chat-input {
