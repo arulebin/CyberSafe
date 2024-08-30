@@ -8,7 +8,7 @@ submitBtn.addEventListener("click", (e) => {
 });
 
 async function checkVirusUrl(url) {
-    const response = await fetch("/api/check-virus-url.js", {
+    const response = await fetch("/api/check-virus-url", {
         method: 'POST',
         headers: {
             accept: 'application/json',
