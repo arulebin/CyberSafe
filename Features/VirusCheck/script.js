@@ -22,10 +22,12 @@ submitBtn.addEventListener("click", async (e) => {
 
 function displayResults(data) {
     const resultWrapper = document.getElementById("resultWrapper");
-    resultWrapper.innerHTML = '';
-    console.log(data.data.attributes.results);
-    if (data.attributes && data.attributes.results) {
-        const results = data.attributes.results;
+    resultWrapper.innerHTML = ''; 
+    displayStats(data.data.attributes.stats);
+
+    if (data.data.attributes && data.data.attributes.results) {
+        const results = data.data.attributes.results;
+        console.log('Results:', results);
         for (const engine in results) {
             const { engine_name, result, category } = results[engine];
             const resultItem = document.createElement('div');
@@ -41,9 +43,7 @@ function displayResults(data) {
             } else {
                 bgColor = "linear-gradient(135deg, #e0e0e0, #c0c0c0)";
             }
-
             resultItem.style.background = bgColor;
-
             resultItem.innerHTML = `
                 <h5>${engine_name}</h5>
                 <p>Category: ${category}</p>
@@ -53,7 +53,31 @@ function displayResults(data) {
         }
     } else {
         resultWrapper.innerHTML = '<p>No results found.</p>';
+        console.error('No results found in the response data:', data);
     }
+}
+
+//display the stats
+function displayStats(stats) {
+    const statsWrapper = document.getElementById("statsWrapper");
+    statsWrapper.innerHTML = '';
+
+    const statItems = [
+        { label: 'Malicious', count: stats.malicious, color: 'linear-gradient(135deg, #ff7f7f, #ff4c4c)' },
+        { label: 'Harmless', count: stats.harmless, color: 'linear-gradient(135deg, #7fff7f, #4cff4c)' },
+        { label: 'Undetected', count: stats.undetected, color: 'linear-gradient(135deg, #fff700, #ffd700)' }
+    ];
+
+    statItems.forEach(item => {
+        const statItem = document.createElement('div');
+        statItem.classList.add('stat-item');
+        statItem.style.background = item.color;
+        statItem.innerHTML = `
+            <div class="stat-circle">${item.count}</div>
+            <p>${item.label}</p>
+        `;
+        statsWrapper.appendChild(statItem);
+    });
 }
 
 async function checkVirusUrl(url) {
@@ -70,7 +94,6 @@ async function checkVirusUrl(url) {
         if (response.ok) {
             const result = await response.json();
             console.log('Scan result:', result);
-            console.log(result.data.attributes.results)
             displayResults(result);
             return result;
         } else {

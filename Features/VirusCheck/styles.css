@@ -135,6 +135,45 @@ body {
   font-size: 0.9rem;
   color: #fff;
 }
+.stats-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 20px auto;
+  max-width: 800px;
+  flex-wrap: wrap;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  color: white;
+  text-align: center;
+  width: 100px;
+  height: 120px;
+  transition: transform 0.3s ease;
+}
+
+.stat-item:hover {
+  transform: scale(1.1);
+}
+
+.stat-circle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
 
 @keyframes gradientShift {
   0% {
@@ -174,6 +213,16 @@ body {
   .result-wrapper {
     padding: 15px;
   }
+  .stat-item {
+    width: 80px;
+    height: 100px;
+  }
+
+  .stat-circle {
+    width: 50px;
+    height: 50px;
+    font-size: 1rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -209,5 +258,19 @@ body {
   }
   .result-wrapper {
     padding: 10px;
+  }
+  .stats-wrapper {
+    gap: 10px;
+  }
+
+  .stat-item {
+    width: 70px;
+    height: 90px;
+  }
+
+  .stat-circle {
+    width: 40px;
+    height: 40px;
+    font-size: 0.9rem;
   }
 }
