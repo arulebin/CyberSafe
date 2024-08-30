@@ -32,8 +32,13 @@ async function checkVirusUrl(url) {
         });
 
         if (response.ok) {
-            const result = await response.json();
-            console.log('Result received from server:', result);
+            const text = await response.text();
+            try {
+                const result = JSON.parse(text);
+                console.log('Result received from server:', result);
+            } catch (jsonError) {
+                console.error('Error parsing JSON:', jsonError.message);
+            }
         } else {
             const errorMessage = await response.text();
             console.error(`Error (${response.status}): ${errorMessage}`);
@@ -42,3 +47,4 @@ async function checkVirusUrl(url) {
         console.error('Network or server error:', error.message);
     }
 }
+
