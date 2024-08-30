@@ -1,11 +1,11 @@
 {
-    "name": "databreach",
-    "version": "1.0.0",
-    "scripts": {
-      "start": "node api/check-breach.js"
-    },
-    "dependencies": {
-      "node-fetch": "^2.6.1"
-    }
+  "name": "cybersafe",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node api/check-breach.js",
+    "check-virus-url": "node api/check-virus-url.js"
+  },
+  "dependencies": {
+    "node-fetch": "^2.6.1"
   }
-  
+}
