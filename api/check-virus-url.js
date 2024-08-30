@@ -40,8 +40,7 @@ function encodeScanId(scanId) {
 }
 // Function to get the report 
 async function getUrlReport(scanId) {
-    const encodedScanId = encodeScanId(scanId);
-    const url = `https://www.virustotal.com/api/v3/urls/${encodedScanId}`;
+    const url = `https://www.virustotal.com/api/v3/analyses/${scanId}`;  // Use analysis endpoint
 
     console.log('Fetching report for URL:', url);
 
@@ -54,13 +53,9 @@ async function getUrlReport(scanId) {
 
     if (!response.ok) {
         const errorText = await response.text();
-        console.error('Fetch Report Error Response:', errorText);
         throw new Error(`Error fetching report: ${response.status} - ${errorText}`);
     }
 
-    const result = await response.json();
-    console.error('Fetch Report Error Response:', errorText);
-    return result;
 }
 
 module.exports = async (req, res) => {
