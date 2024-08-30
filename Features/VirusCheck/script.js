@@ -30,6 +30,20 @@ function displayResults(data) {
             const { engine_name, result, category } = results[engine];
             const resultItem = document.createElement('div');
             resultItem.classList.add('result-item');
+
+            let bgColor;
+            if (category === "harmless") {
+                bgColor = "linear-gradient(135deg, #7fff7f, #4cff4c)";
+            } else if (category === "malicious") {
+                bgColor = "linear-gradient(135deg, #ff7f7f, #ff4c4c)";
+            } else if (category === "undetected") {
+                bgColor = "linear-gradient(135deg, #fff700, #ffd700)";
+            } else {
+                bgColor = "linear-gradient(135deg, #e0e0e0, #c0c0c0)";
+            }
+
+            resultItem.style.background = bgColor;
+
             resultItem.innerHTML = `
                 <h5>${engine_name}</h5>
                 <p>Category: ${category}</p>
